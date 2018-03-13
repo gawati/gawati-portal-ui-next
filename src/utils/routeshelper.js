@@ -93,3 +93,7 @@ export const PropsRoute = ({ component, ...rest }) => {
       }}/>
     );
 };
+
+export const PropsRouteNext = ({ component, ...rest }) => {
+    return renderMergedProps(component, rest);
+};

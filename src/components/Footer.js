@@ -2,7 +2,7 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 
 import { defaultLang } from '../utils/generalhelper';
-import {T} from '../utils/i18nhelper';
+import {t} from '../utils/i18nhelper';
 
 import imgFace from '../images/face.svg';
 // import imgLinkedin from '../images/linkedin.svg';
@@ -10,11 +10,15 @@ import imgTwitter from '../images/twitter.svg';
 import imgInstagram from '../images/instagram.svg';
 import '../css/Footer.css';
 
-const ContentLink = ({lang, page, children}) =>
-    <NavLink to={ `/content/_lang/${lang}/_page/${page}` }>{children}</NavLink>;
+import Link from 'next/link';
 
-function Footer({match, i18n}) {
-    let lang = match.params.lang || defaultLang().langUI ;
+const ContentLink = ({lang, page, children}) =>
+    <Link href={ `/content?link=_lang/${lang}/_page/${page}` }><a>{page}</a></Link>
+    // <NavLink to={ `/content/_lang/${lang}/_page/${page}` }>{children}</NavLink>;
+
+function Footer({routeProps, i18n, t}) {
+    // let lang = match.params.lang || defaultLang().langUI ;
+    let lang = defaultLang().langUI ;
     return (
     <footer>
         <div className="container-fluid">
@@ -22,16 +26,16 @@ function Footer({match, i18n}) {
                 <div className="col-4">
                     <ul>
                         <li>
-                            <ContentLink lang={lang} page="policies">{T("Policies")}</ContentLink>
+                            <ContentLink lang={lang} page="policies">{t("Policies")}</ContentLink>
                         </li>
                         <li>
-                            <ContentLink lang={lang} page="privacy_policy">{T("Privacy Policy")}</ContentLink>
+                            <ContentLink lang={lang} page="privacy_policy">{t("Privacy Policy")}</ContentLink>
                         </li>
                         <li>
-                            <ContentLink lang={lang} page="copyright">{T("Copyright")}</ContentLink>
+                            <ContentLink lang={lang} page="copyright">{t("Copyright")}</ContentLink>
                         </li>
                         <li>
-                            <ContentLink lang={lang} page="terms_of_service">{T("Terms of Service")}</ContentLink>
+                            <ContentLink lang={lang} page="terms_of_service">{t("Terms of Service")}</ContentLink>
                         </li>
                     </ul>
                 </div>
@@ -39,39 +43,39 @@ function Footer({match, i18n}) {
                 <div className="col-4">
                     <ul>
                         <li>
-                            <ContentLink lang={lang} page="who_we_are">{T("Who We Are")}</ContentLink>
+                            <ContentLink lang={lang} page="who_we_are">{t("Who We Are")}</ContentLink>
                         </li>
                         <li>
-                            <ContentLink lang={lang} page="what_we_do">{T("What We Do")}</ContentLink>
+                            <ContentLink lang={lang} page="what_we_do">{t("What We Do")}</ContentLink>
                         </li>
                         <li>
-                            <ContentLink lang={lang} page="faq">{T("FAQ")}</ContentLink>
+                            <ContentLink lang={lang} page="faq">{t("FAQ")}</ContentLink>
                         </li>
                         <li>
-                            <a href="https://www.gawati.org">{T("Blog")}</a>
+                            <a href="https://www.gawati.org">{t("Blog")}</a>
                         </li>
                         <li>
-                            <a href="/">{T("Contact Us")}</a>
+                            <a href="/">{t("Contact Us")}</a>
                         </li>
                     </ul>
                 </div>
 
                 <div className="col-4">
-                    <p>{T("Join over 14,000 people who receive weekly information")}</p>
+                    <p>{t("Join over 14,000 people who receive weekly information")}</p>
                     <div className="w-form">
                         <form className="w-clearfix" data-name="Email Form 2" id="email-form-2"
                             name="email-form-2">
                             <input className="newsletter-form" data-name="Email" id="email" maxLength="256"
-                                name="email" placeholder={T("Enter your email address")} required="required"
+                                name="email" placeholder={t("Enter your email address")} required="required"
                                 type="email"/>
                             <input className="submit-newsletter" data-wait="Please wait..." type="submit"
                                 value=">"/>
                         </form>
                         <div className="form-done">
-                            <div>{T("Thank you! Your submission has been received!")}</div>
+                            <div>{t("Thank you! Your submission has been received!")}</div>
                         </div>
                         <div className="form-fail">
-                            <div>{T("Oops! Something went wrong while submitting the form")}</div>
+                            <div>{t("Oops! Something went wrong while submitting the form")}</div>
                         </div>
                     </div>
                 </div>
@@ -107,7 +111,7 @@ function Footer({match, i18n}) {
                     <img alt="linkedin" src={imgLinkedin} width="25"/>
                 </a>*/}
             </div>
-            <h5>{T("The African Law Library")}</h5>
+            <h5>{t("The African Law Library")}</h5>
         </div>
     </footer>
     );

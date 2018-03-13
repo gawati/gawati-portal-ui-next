@@ -4,10 +4,10 @@ import React from 'react';
 import {Aux} from '../utils/generalhelper';
 // import {getRoute} from '../utils/routeshelper';
 
-// import PageUpperBorder from './PageUpperBorder';
+import PageUpperBorder from './PageUpperBorder';
 // import TopBar from './TopBar';
-// import NoMatch from './NoMatch';
-// import HomeContentArea from './HomeContentArea';
+import NoMatch from './NoMatch';
+import HomeContentArea from './HomeContentArea';
 // import DocumentContentArea from './DocumentContentArea';
 // import ListContentArea from './ListContentArea';
 // import PageContentArea from './PageContentArea';
