@@ -1,0 +1,23 @@
+.ui-lang-item {padding:5px;}
+
+.ui-lang-item > button {
+    background:none!important;
+    border:none; 
+    padding:0!important;
+    font-size:11px;
+    /*optional*/
+    font-family:arial,sans-serif;  /*input has OS specific font-family*/
+    /* color:#069; */
+    color: var(--languageswitcher-color);
+    /*text-decoration:underline;*/
+    cursor:pointer;
+    text-transform: uppercase; 
+}
+
+.ui-lang-highlight {
+    background-color: var(--languageswitcher-highlight-bg-color);
+}
+
+.ui-lang-item:hover {
+    background-color: var(--languageswitcher-bg-color)
+}

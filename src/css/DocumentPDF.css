@@ -1,0 +1,6 @@
+.pdfview {
+    height:500px; 
+    width:100%; /** 2 columns **/
+    margin-bottom: 2em;
+    margin-top: 1em;
+}

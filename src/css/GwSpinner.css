@@ -1,0 +1,11 @@
+.centered-spinner { 
+    text-align:center; padding: 14px 21px 0px; 
+}
+
+.sk-spinner {
+    display: inline-block;
+}
+
+.ball-spin-fade-loader {
+    height: 30px;
+}

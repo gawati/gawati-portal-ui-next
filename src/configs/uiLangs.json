@@ -1,0 +1,26 @@
+{
+    "langs": [
+        {
+            "lang": "en",
+            "default": true,
+            "content": "english"
+        },
+        {
+            "lang": "en_KE",
+            "default": true,
+            "content": "english (KE)"
+        },        
+        {
+            "lang": "fr",
+            "content": "français"
+        },
+        {
+            "lang": "pt",
+            "content": "português"
+        },
+        {
+            "lang": "ik",
+            "content": "control"
+        }
+    ]
+}

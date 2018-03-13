@@ -1,0 +1,28 @@
+#filter-container {
+  transition: width .1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#filter-container.show {
+  display: block;
+  right: 0px;
+}
+.cc-law-libray{
+  margin-bottom: 0px;
+  font-family: var(--font-2);
+  color: var(--sidebar-footer-color);
+  font-size: 11px;
+  text-align: center;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.right.col-3 a:hover,
+.right.col-3 a:focus{
+  color: var(--sidebar-a-color);
+}
+.white-wrapper {
+  padding: 20px;
+  border-radius: var(--sidebar-border-radius);
+  background-color: var(--sidebar-bg-color);
+  box-shadow: var(--sidebar-box-shadow);
+}
