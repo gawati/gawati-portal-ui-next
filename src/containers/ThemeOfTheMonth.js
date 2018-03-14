@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import {homePageFilterWords} from '../constants';
 import {Aux} from '../utils/generalhelper';
-import {t} from '../utils/i18nhelper';
+import {T} from '../utils/i18nhelper';
 
 import DivFeed from '../components/DivFeed';
 import GwSpinner from '../components/GwSpinner'
