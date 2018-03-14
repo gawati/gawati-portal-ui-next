@@ -41,13 +41,14 @@ i18nInstance
         server.post('/static/locales/add/:lng/:ns', i18nextMiddleware.missingKeyHandler(i18nInstance))
 
         server.get('/', (req, res) => {
-          return app.render(req, res, '/', req.query);
+          return app.render(req, res, '/home', req.query);
         })
 
         server.get('content/_lang/:lang/_page/:page', (req, res) => {
           const mergedQuery = Object.assign({}, req.query, req.params)
           return app.render(req, res, '/content', mergedQuery);
         })
+
         // use next.js
         server.get('*', (req, res) => handle(req, res))
 

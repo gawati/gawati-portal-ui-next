@@ -27,7 +27,7 @@ class App extends Component {
       <I18n ns="translations">
       {
         (t, { i18n })=>(
-          <Page i18n={i18n} />
+          <Page i18n={i18n} routeProps={this.props.routeProps} t={this.props.t} />
         )
       }
       </I18n>

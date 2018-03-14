@@ -15,6 +15,7 @@ import HomeContentArea from './HomeContentArea';
 // import { Redirect } from 'react-router'
 // import {PropsRoute} from '../utils/routeshelper';
 // import {Helmet} from "react-helmet";
+import {PropsRouteNext} from '../utils/routeshelper';
 
 class Page extends React.Component {
 
@@ -60,6 +61,7 @@ class Page extends React.Component {
             <Aux>
                 {css}
                 <div>Hello from Page</div>
+                <PropsRouteNext component={HomeContentArea}  i18n={this.props.i18n} setCollapsible={this.setCollapsible} routeProps={this.props.routeProps} t={this.props.t} />
             </Aux>
         );
    } 

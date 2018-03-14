@@ -5,7 +5,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import {apiGetCall} from '../api';
 import {homePageFilterWords} from '../constants';
-import {T} from '../utils/i18nhelper';
+import {t} from '../utils/i18nhelper';
 
 import ThemeOfTheMonth from '../containers/ThemeOfTheMonth';
 import RecentDocs from '../containers/RecentDocs';
@@ -92,6 +92,7 @@ class HomeContentColumn extends React.Component {
         const { latest, themes } = this.state;
         let content;
         let _lang = this.state.lang;
+        let t = this.props.t;
         /*
         * BOOTSTRAP + REACT TABS
         *
@@ -125,11 +126,11 @@ class HomeContentColumn extends React.Component {
         <div className={ `left col-xs-12 col-lg-9 col-md-9 col-sm-12` }>
             <Tabs>
                 <TabList>
-                    <Tab>{ T("latest") }</Tab>
-                    <Tab>{ T("in focus") }</Tab>
+                    <Tab>{ t("latest") }</Tab>
+                    <Tab>{ t("in focus") }</Tab>
                 </TabList>
                 <TabPanel>
-                    <RecentDocs loading={latest.loading} recentDocs={latest.content} tab={1} lang={_lang}/> 
+                    <RecentDocs loading={latest.loading} recentDocs={latest.content} tab={1} lang={_lang} t={t}/> 
                 </TabPanel>
                 <TabPanel>
                     <ThemeOfTheMonth loading={themes.loading} themes={themes.content} tab={2} lang={_lang}/>

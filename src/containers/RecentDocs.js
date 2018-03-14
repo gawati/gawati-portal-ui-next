@@ -9,14 +9,14 @@ import GwSpinner from '../components/GwSpinner'
 
 import '../css/RecentDocs.css';
 
-const RecentDocs = ({loading, recentDocs, tab, lang}) => 
+const RecentDocs = ({loading, recentDocs, tab, lang, t}) => 
     <div className={ `tab-pane tab-active` } data-tab={`t${tab}`}>
-        <RecentIntro loading={loading} />
-        {getRecentDocs(loading, recentDocs, tab, lang)}
+        <RecentIntro loading={"loading"} />
+        {getRecentDocs(loading, recentDocs, tab, lang, t)}
     </div>
     ;
 
-const getRecentDocs = (loading, recentDocs, tab, lang) => {
+const getRecentDocs = (loading, recentDocs, tab, lang, t) => {
         if (loading === true) {
             return (
                 <noscript />
@@ -24,9 +24,9 @@ const getRecentDocs = (loading, recentDocs, tab, lang) => {
         }
         return (
             <Aux>
-                <RecentSummary recentDocs={recentDocs} lang={lang} />
+                <RecentSummary recentDocs={recentDocs} lang={lang} t={t} />
                 <div className="button-wrapper">
-                <NavLink className={ `button w-button` } to={ `/recent/_lang/` + lang + `/_count/10/_from/1/_to/10`}>{T("More posts")}&#160;→</NavLink>
+                <NavLink className={ `button w-button` } to={ `/recent/_lang/` + lang + `/_count/10/_from/1/_to/10`}>{t("More posts")}&#160;→</NavLink>
                 </div>
             </Aux>
         );    
@@ -34,21 +34,21 @@ const getRecentDocs = (loading, recentDocs, tab, lang) => {
 
 const RecentIntro = ({loading}) => 
     <DivFeed customClass="white-feed">
-        <h2>{T("Latest Documents")}</h2>
+        <h2>{"Latest Documents"}</h2>
         <a>
-            <p>{T("The most recently published documents")}</p>
+            <p>{"The most recently published documents"}</p>
         </a>
         <div className="grey-rule"/>
         {loading === true ? <GwSpinner />: <noscript /> }
     </DivFeed>
     ;      
 
-const RecentSummary = ({recentDocs, lang}) => 
+const RecentSummary = ({recentDocs, lang, t}) => 
         <Aux>
         {
             recentDocs.map(abstract => {
                 return (
-                <ExprAbstract key={abstract['expr-iri']} abstract={abstract} lang={lang}/>   
+                <ExprAbstract key={abstract['expr-iri']} abstract={abstract} lang={lang} t={t}/>   
                 )
             })
         }

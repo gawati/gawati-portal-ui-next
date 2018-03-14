@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import {homePageFilterWords} from '../constants';
 import {Aux} from '../utils/generalhelper';
-import {T} from '../utils/i18nhelper';
+import {t} from '../utils/i18nhelper';
 
 import DivFeed from '../components/DivFeed';
 import GwSpinner from '../components/GwSpinner'
@@ -20,7 +20,7 @@ const ThemeIntro = ({loading}) => {
         let homePageIntro = homePageFilterWords();
         return (
         <DivFeed>
-            <h2>{T("Theme of the month")}: { homePageIntro["name"] }</h2>
+            <h2>{t("Theme of the month")}: { homePageIntro["name"] }</h2>
             <a>
                 <p>{ homePageIntro["description"] }</p>
             </a>
@@ -38,7 +38,7 @@ const getThemeSummary = (loading, themes, tab, lang) => {
             <Aux>
                 <ThemeSummary themes={themes} lang={lang} />
                 <div className="button-wrapper">
-                    <NavLink className={ `button w-button` } to={ `/themes/_lang/` + lang + `/_themes/${homePageFilterWords()["keywords"].join("|") }/_count/10/_from/1/_to/10`}>{T("More posts")}&#160;→</NavLink>
+                    <NavLink className={ `button w-button` } to={ `/themes/_lang/` + lang + `/_themes/${homePageFilterWords()["keywords"].join("|") }/_count/10/_from/1/_to/10`}>{t("More posts")}&#160;→</NavLink>
                 </div>
             </Aux>
         );
