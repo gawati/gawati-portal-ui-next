@@ -3,10 +3,10 @@ import Router from 'next/router';
 
 export default class Toy extends Component {
   render() {
-    console.log("From TOY: ", Router.router);
     return (
       <div>
-        Displaying Content
+        <h4>Displaying Content:</h4> 
+        <p>Language from params: {this.props.url.query._lang}</p>
       </div>
     );
   }

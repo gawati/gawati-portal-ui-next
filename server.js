@@ -1,15 +1,16 @@
 const express = require('express')
 const path = require('path')
 const next = require('next')
+
+const i18nextMiddleware = require('i18next-express-middleware')
+const Backend = require('i18next-node-fs-backend')
+const { i18nInstance } = require('./i18n')
+
 require('dotenv').config();
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
-
-const i18nextMiddleware = require('i18next-express-middleware')
-const Backend = require('i18next-node-fs-backend')
-const { i18nInstance } = require('./i18n')
 
 // init i18next with serverside settings
 // using i18next-express-middleware
@@ -39,6 +40,14 @@ i18nInstance
         // missing keys
         server.post('/static/locales/add/:lng/:ns', i18nextMiddleware.missingKeyHandler(i18nInstance))
 
+        server.get('/', (req, res) => {
+          return app.render(req, res, '/', req.query);
+        })
+
+        server.get('content/_lang/:lang/_page/:page', (req, res) => {
+          const mergedQuery = Object.assign({}, req.query, req.params)
+          return app.render(req, res, '/content', mergedQuery);
+        })
         // use next.js
         server.get('*', (req, res) => handle(req, res))
 

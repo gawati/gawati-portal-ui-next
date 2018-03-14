@@ -6,8 +6,6 @@ import '../src/css/bootstrap-overrides.css';
 import '../src/css/app-custom.css';
 import '../src/css/app-media.css';
 
-import Link from 'next/link'
-
 export default withI18next(['translations'])(({ t, initialI18nStore }) => (
     <App i18n={initialI18nStore} />
 ))

@@ -7,6 +7,7 @@ import Toy from './Toy';
 
 class Layout extends Component {
   render() {
+    console.log("Layout:", this.props);
     return (
       <I18n ns="translations">
       {
