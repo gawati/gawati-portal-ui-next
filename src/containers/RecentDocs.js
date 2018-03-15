@@ -1,6 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-
+import Link from 'next/link';
 import {Aux} from '../utils/generalhelper';
 import {T} from '../utils/i18nhelper';
 import DivFeed from '../components/DivFeed';
@@ -26,11 +25,11 @@ const getRecentDocs = (loading, recentDocs, tab, lang, t) => {
             <Aux>
                 <RecentSummary recentDocs={recentDocs} lang={lang} t={t} />
                 <div className="button-wrapper">
-                <NavLink className={ `button w-button` } to={ `/recent/_lang/` + lang + `/_count/10/_from/1/_to/10`}>{t("More posts")}&#160;→</NavLink>
+                <Link className={ `button w-button` } href={ `/recent?_lang=${lang}&_count=10&_from=1&_to=10` } as={ `/recent/_lang/` + lang + `/_count/10/_from/1/_to/10` }><a>{t("More posts")}&#160;→</a></Link>
                 </div>
             </Aux>
         );    
-} 
+}
 
 const RecentIntro = ({loading}) => 
     <DivFeed customClass="white-feed">

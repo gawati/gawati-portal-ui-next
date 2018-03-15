@@ -8,7 +8,8 @@ export const gawati = () => window.gawati ;
  * Returns the URL to the document server path which provides access to PDF 
  * and other artifacts on the file system
  */
-export const documentServer = () => gawati().GAWATI_DOCUMENT_SERVER ;
+// export const documentServer = () => gawati().GAWATI_DOCUMENT_SERVER ;
+export const documentServer = () => "http://localhost" ;
 
 
 /**
@@ -28,7 +29,8 @@ export const documentServer = () => gawati().GAWATI_DOCUMENT_SERVER ;
  * 
  */
 export const dataProxyServer = () => 
-    process.env.NODE_ENV === 'development' ? "" : gawati().GAWATI_PROXY ;
+    "http://localhost"
+    // process.env.NODE_ENV === 'development' ? "" : gawati().GAWATI_PROXY ;
 
 /**
  * Search by theme on the page is filtered from here

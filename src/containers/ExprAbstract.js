@@ -1,7 +1,6 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
 import moment from 'moment';
-
+import Link from 'next/link';
 import {shortTitle, displayDate} from '../utils/generalhelper';
 import {convertObjectToEncodedString, setInRoute} from '../utils/routeshelper';
 import {documentServer} from '../constants.js';
@@ -92,9 +91,9 @@ class ExprAbstract extends React.Component {
             <DivFeed key={abstract['expr-iri']}>
                 <h2>{shortTitle(abstract.publishedAs)}</h2>
                 <div className="text-block">
-                    <NavLink to={ countryLink }> {t(abstract.country.showAs)} </NavLink> &#160;| &#160; 
-                    <NavLink to={ langLink }>{t(abstract.language.showAs)}</NavLink> &#160;| &#160;
-                    <NavLink to={ yearLink }  key={this.props.lang}>{displayDate(abstract.date[1].value, pageLang)}</NavLink>
+                    <Link href={ countryLink }><a>{t(abstract.country.showAs)}</a></Link> &#160;| &#160;
+                    <Link href={ langLink }><a>{t(abstract.language.showAs)}</a></Link> &#160;| &#160;
+                    <Link href={ yearLink } key={this.props.lang}><a>{displayDate(abstract.date[1].value, pageLang)}</a></Link>
                 </div>  
                 <ThumbnailAbstract abstract={abstract} lang={pageLang}/>
                 <p>{abstract.publishedAs}</p>
