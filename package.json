@@ -34,6 +34,8 @@
     "moment": "2.21.0",
     "next": "^5.0.0",
     "next-images": "^0.9.2",
+    "postcss-css-variables": "^0.8.0",
+    "postcss-loader": "^2.1.1",
     "react": "^16.2.0",
     "react-autosuggest": "9.3.4",
     "react-dom": "^16.2.0",

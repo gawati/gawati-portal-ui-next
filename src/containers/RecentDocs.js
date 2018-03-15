@@ -25,7 +25,7 @@ const getRecentDocs = (loading, recentDocs, tab, lang, t) => {
             <Aux>
                 <RecentSummary recentDocs={recentDocs} lang={lang} t={t} />
                 <div className="button-wrapper">
-                <Link className={ `button w-button` } href={ `/recent?_lang=${lang}&_count=10&_from=1&_to=10` } as={ `/recent/_lang/` + lang + `/_count/10/_from/1/_to/10` }><a>{t("More posts")}&#160;→</a></Link>
+                <Link href={ `/recent?_lang=${lang}&_count=10&_from=1&_to=10` } as={ `/recent/_lang/` + lang + `/_count/10/_from/1/_to/10` }><a className={ `button w-button` }>{t("More posts")}&#160;→</a></Link>
                 </div>
             </Aux>
         );    

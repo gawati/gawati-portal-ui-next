@@ -5,7 +5,6 @@ const webpack = require('webpack');
 require('dotenv').config()
 
 let newConfig = withCSS({
-  cssModules: true,
   webpack(config, options) {
     
     const { dir, isServer } = options
