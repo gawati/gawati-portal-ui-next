@@ -5,6 +5,14 @@ const webpack = require('webpack');
 require('dotenv').config()
 
 let newConfig = withCSS({
+  postcssLoaderOptions: {
+    config: {
+      ctx: {
+        theme: JSON.stringify(process.env.REACT_APP_THEME)
+      }
+    }
+  },
+
   webpack(config, options) {
     
     const { dir, isServer } = options

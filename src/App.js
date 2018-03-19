@@ -17,7 +17,7 @@ class App extends Component {
       const path =  './css/themes/' + process.env.REACT_APP_THEME + '/vars.css';
       console.log(path)
       // dynamic(import(`${path}`));
-      dynamic(import('./css/themes/default/vars.css'));
+      // dynamic(import('./css/themes/default/vars.css'));
     }
     if (typeof registerServiceWorker !== 'undefined') {registerServiceWorker();}
   }

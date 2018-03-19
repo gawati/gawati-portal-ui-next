@@ -1,95 +1,13 @@
-module.exports = {
-  plugins: {
-    // Illustrational
-    'postcss-css-variables': {
-      variables: {
-        '--footer-bg-color':'#3f474d',
-        '--overrides-breadcrumb-color':'rgba(51, 51, 51, .67)',
-        '--overrides-p-color': '#74737a',
-        '--overrides-a-color': '#a9a9a9',
-        '--overrides-a-focus-color': '#a9a9a9',
-        '--overrides-h-color': '#74737a',
-        '--font-1': 'Montserrat, sans-serif',
-        '--font-2': "Georgia, Times, 'Times New Roman', serif",
-        '--font-3': "Helvetica, sans-serif",
-        '--content-grey-rule-bg-color': '#c7c7c7',
-        '--content-a-color': '#3898EC',
-        '--content-text-block-color': '#74737a',
-        '--content-button-bg-color': '#483332',
-        '--content-button-color': '#fff',
-        '--content-tab-pane-bg-color': '#fff',
-        '--content-search-result-bg-color': '#fff',
-        '--content-search-result-box-shadow': '0 0 0 1px rgba(0, 0, 0, .06)',
-        '--content-search-result-color': 'rgba(51, 51, 51, .67)',
-        '--content-search-result-h1-color': '#74737a',
-        '--content-search-result-span-color': '#434246',
-        '--content-search-result-a-color': '#3898EC',
-        '--content-search-result-more-color': '#1abc9c',
-        '--content-search-result-more-hover-color': '#1abc9c',
-        '--content-doc-download-border-color': '#000',
-        '--content-breadcrumb-color': 'rgba(51, 51, 51, .67)',
-        '--autosuggest-color': '#333333',
-        '--footer-bg-color': '#3f474d',
-        '--footer-color': '#dddada',
-        '--footer-bg-color2': '#171b1d',
-        '--footer-a-color': '#dddada',
-        '--footer-submit-bg': '#3898ec',
-        '--footer-submit-color': '#fff',
-        '--footer-social-bg-color': '#171b1d',
-        '--footer-social-color': '#7e7979',
-        '--footer-p-color': '#dddada',
-        '--home-wbutton-bg-color': '#483332',
-        '--home-more-color': '#fff',
-        '--home-more-bg-color': '#fff',
-        '--pagecontentcolumn-bg-color': '#fff',
-        '--pagecontentcolumn-color': 'rgba(51, 51, 51, .67)',
-        '--div-block-2-bg-color': '#000',
-        '--div-block-4-bg-color': '#1abc9c',
-        '--div-block-5-bg-color': '#f2ca27',
-        '--div-block-6-bg-color': '#e67e22',
-        '--div-block-7-bg-color': '#16a085',
-        '--div-block-8-bg-color': '#2980b9',
-        '--div-block-9-bg-color': '#e74c3c',
-        '--div-block-10-bg-color': '#1abc9c',
-        '--paginator-li-bg-color': '#337ab7',
-        '--paginator-li-border-color': '#337ab7',
-        '--paginator-li-color': '#337ab7',
-        '--paginator-li-disabled-color': '#777',
-        '--paginator-li-disabled-border-color': '#ddd',
-        '--reacttabs-bg-color': '#fff',
-        '--reacttabs-color': 'initial',
-        '--reacttabs-selected-bg-color': '#fff',
-        '--reacttabs-selected-color': 'black',
-        '--reacttabs-border': '1px solid transparent',
-        '--reacttabs-border-radius': '5px 5px 0 0',
-        '--reacttabs-bg-image': 'initial',
-        '--reacttabs-hover-bg-color': 'initial',
-        '--reacttabs-hover-color': 'initial',
-        '--reacttabs-selected-border': '1px solid rgb(170, 170, 170)',
-        '--recentdocs-bg-color': 'white',
-        '--section-bg-color': '#e0ddd7',
-        '--section-color': '#1abc9c',
-        '--sidebar-footer-color': '#aaa',
-        '--sidebar-a-color': '#a9a9a9',
-        '--sidebar-bg-color': '#fff',
-        '--sidebar-box-shadow': '0 0 0 1px rgba(0, 0, 0, .06)',
-        '--sidebar-border-radius': '5px',
-        '--sitesearch-color': '#74737a',
-        '--sitesearc-li-bg-color': 'rgb(250, 244, 244) !important',
-        '--sitesearch-li-color': '#a9a9a9', 
-        '--sitesearch-bg-image': 'radial-gradient(circle, black, black 7%, transparent 15%, transparent 35%, black 45%, black 48%, transparent 55%)',
-        '--sitesearch-loading-bg-image': 'url("http://loadinggif.com/images/image-selection/3.gif")',
-        '--sitesearch-loading-bg-color': '#ffffff',
-        '--topbar-bg': '#fff', /* SIG */ 
-        '--topbar-submit-button-bg-color': '#1abc9c',
-        '--topbar-box-shadow':  '0 1px 0 0 rgba(0, 0, 0, .06)',
-        '--logo-img': 'url("../../themes/default/assets/logo.png")',
-        '--logo-color': '#7a737a',
-        '--logo-color2': '#7a737a',
-        '--languageswitcher-highlight-bg-color': '#e0ddd7',
-        '--languageswitcher-bg-color': '#e0ddd7',
-        '--languageswitcher-color': '#a9a9a9',
+// Need to export a JS object for use by the plugin for custom CSS variables.
+// Use vars.js instead of vars.css.
+
+module.exports = ({ options, env }) => {
+  var theme = JSON.parse(options.theme);
+  return ({
+    plugins: {
+      'postcss-css-variables': {
+          variables: require("./src/css/themes/"+theme+"/vars.js")
       }
     }
-  }
+  })
 }
