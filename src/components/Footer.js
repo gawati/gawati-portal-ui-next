@@ -13,14 +13,10 @@ import '../css/Footer.css';
 import Link from 'next/link';
 
 const ContentLink = ({lang, page, children}) =>
-    // <Link href={ `/content?link=_lang/${lang}/_page/${page}` }><a>{page}</a></Link>
     <Link href={ `/content?_lang=${lang}&_page=${page}` } as={ `/content/_lang/${lang}/_page/${page}` }><a>{page}</a></Link>
-    // <NavLink to={ `/content/_lang/${lang}/_page/${page}` }>{children}</NavLink>;
 
 function Footer({routeProps, i18n, t}) {
-    // let lang = match.params.lang || defaultLang().langUI ;
-    console.log("Query params in FOOTER: ", routeProps.query);
-    let lang = defaultLang().langUI ;
+    let lang = routeProps.query.lang || defaultLang().langUI ;
     return (
     <footer>
         <div className="container-fluid">

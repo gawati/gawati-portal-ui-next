@@ -40,8 +40,13 @@ i18nInstance
         // missing keys
         server.post('/static/locales/add/:lng/:ns', i18nextMiddleware.missingKeyHandler(i18nInstance))
 
+        server.get('/_lang/:lang', (req, res) => {
+          const mergedQuery = Object.assign({}, req.query, req.params)
+          return app.render(req, res, '/home', mergedQuery);
+        })
+
         server.get('/', (req, res) => {
-          return app.render(req, res, '/home', req.query);
+          res.redirect(301, '/_lang/'+req.language);
         })
 
         server.get('content/_lang/:lang/_page/:page', (req, res) => {
