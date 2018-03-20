@@ -10,12 +10,17 @@ import NoMatch from './NoMatch';
 import HomeContentArea from './HomeContentArea';
 // import DocumentContentArea from './DocumentContentArea';
 // import ListContentArea from './ListContentArea';
-// import PageContentArea from './PageContentArea';
+import PageContentArea from './PageContentArea';
 // import Footer from './Footer';
 // import { Redirect } from 'react-router'
 // import {PropsRoute} from '../utils/routeshelper';
 // import {Helmet} from "react-helmet";
 import {PropsRouteNext} from '../utils/routeshelper';
+
+const pathComponents = {
+    "/home": HomeContentArea,
+    "/content": PageContentArea
+}
 
 class Page extends React.Component {
 
@@ -60,12 +65,10 @@ class Page extends React.Component {
         return (
             <Aux>
                 {css}
-                <div>Hello from Page</div>
-                <PropsRouteNext component={HomeContentArea}  i18n={this.props.i18n} setCollapsible={this.setCollapsible} routeProps={this.props.routeProps} t={this.props.t} />
+                <PropsRouteNext component={pathComponents[this.props.routeProps.pathname]}  i18n={this.props.i18n} setCollapsible={this.setCollapsible} routeProps={this.props.routeProps} t={this.props.t} />
             </Aux>
         );
    } 
 }
-
 
 export default Page;

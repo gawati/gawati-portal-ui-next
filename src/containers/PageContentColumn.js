@@ -24,6 +24,7 @@ class PageContentColumn extends React.Component {
     }
    
     getPage(lang, page) {
+        lang = 'en';
         let apiContentPage = apiGetCall(
             'content', {
                 lang : lang,
@@ -45,15 +46,15 @@ class PageContentColumn extends React.Component {
 
     
     componentDidMount() {      
-        const { params } = this.props.match;
-        this.getPage(params.lang, params.page);
+        const {_lang, _page} = this.props.routeProps.query;
+        this.getPage(_lang, _page);
     }
 
     componentWillReceiveProps(nextProps) {
-        const {lang, page} = nextProps.match.params ;
+        const {_lang, _page} = nextProps.routeProps.query ;
         // we need to always convert the url query to a back-end XQuery
         this.setState({loading: true});
-        this.getPage(lang, page);
+        this.getPage(_lang, _page);
     }    
 
     render() {

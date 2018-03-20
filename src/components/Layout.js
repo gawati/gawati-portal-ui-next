@@ -3,7 +3,6 @@ import Link from 'next/link'
 import Footer from './Footer';
 import { I18n /* , Trans */ } from 'react-i18next';
 import {PropsRouteNext} from '../utils/routeshelper';
-import Toy from './Toy';
 
 class Layout extends Component {
   render() {

@@ -1,6 +1,6 @@
 import { withI18next } from '../lib/withI18next'
 import Layout from '../src/components/Layout.js'
-import Toy from '../src/components/Toy.js'
+import App from '../src/App';
 import 'bootstrap/dist/css/bootstrap-reboot.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../src/css/bootstrap-overrides.css';
@@ -17,7 +17,7 @@ class Content extends React.Component {
     return (
       <Layout routeProps={rest} i18n={i18n} t={t}>
         <h1>Content Page</h1>
-        <Toy url={rest.url} />
+        <App i18n={i18n} routeProps={rest.url} t={t} />
       </Layout>
     );
   }
