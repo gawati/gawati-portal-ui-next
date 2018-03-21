@@ -16,7 +16,7 @@ import DocumentNavBlock from './DocumentNavBlock';
 import DocumentSignature from './DocumentSignature';
 import DocumentActions from './DocumentActions';
 import DocumentTagCloud from './DocumentTagCloud';
-// import DocumentPDF from './DocumentPDF';
+import DocumentPDF from './DocumentPDF';
 
 import DivListing from '../components/DivListing';
 import ListingLoading from '../components/ListingLoading';
@@ -85,13 +85,12 @@ const DocumentContentInfo = ({doc, type}) => {
         </TabPanel>
         <TabPanel>
           <DivFeed>
-            
+            <DocumentPDF doc={doc} type={type} />
           </DivFeed>
         </TabPanel>
       </Tabs>
     );
 }
-// <DocumentPDF doc={doc} type={type} />
  
 DocumentContentInfo.propTypes = DocumentMetadata.propTypes = {
     doc: PropTypes.object.isRequired,

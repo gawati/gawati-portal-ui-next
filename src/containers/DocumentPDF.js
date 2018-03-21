@@ -3,8 +3,8 @@ import {substringBeforeLastMatch } from '../utils/stringhelper';
 import {documentServer} from '../constants';
 import {anBody} from '../utils/akomantoso';
 //import PDF from 'react-pdf-js';
-import { Document } from 'react-pdf/build/entry.webpack';
-import { Page } from 'react-pdf';
+// import { Document } from 'react-pdf/build/entry.webpack';
+import { Document, Page } from 'react-pdf';
 import {rangeMinMax} from '../utils/generalhelper';
 
 /*
