@@ -54,6 +54,11 @@ i18nInstance
           return app.render(req, res, '/content', mergedQuery);
         })
 
+        server.get('doc/_lang/:lang/_iri/:iri', (req, res) => {
+          const mergedQuery = Object.assign({}, req.query, req.params)
+          return app.render(req, res, '/doc', mergedQuery);
+        })
+
         // use next.js
         server.get('*', (req, res) => handle(req, res))
 

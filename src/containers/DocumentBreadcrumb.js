@@ -1,15 +1,15 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import Link from 'next/link';
 import {shortTitle, getDocType} from '../utils/generalhelper';
 import {T} from '../utils/i18nhelper';
 import {anPublication, anFRBRcountry} from '../utils/akomantoso';
 import {convertObjectToEncodedString, setInRoute} from '../utils/routeshelper';
 
 const CategoryLink = ({type}) => 
-    <NavLink to="/">{ getDocType(type)['category']}</NavLink>;
+    <Link href="/"><a>{getDocType(type)['category']}</a></Link>;
 
 const HomeLink = () => 
-    <NavLink to="/">{T("Home")}</NavLink>;
+    <Link href="/"><a>{T("Home")}</a></Link>;
 
 const countryLink = (pageLang, country) =>
     setInRoute(
@@ -28,7 +28,7 @@ const countryLink = (pageLang, country) =>
 const CountryLink = ({doc, type, lang}) => {
     let country = anFRBRcountry(doc, type);
     return (
-        <NavLink to={ countryLink(lang, country.value) }>{ country.showAs }</NavLink>
+        <Link href={ countryLink(lang, country.value) }><a>{country.showAs}</a></Link>
     );
 }    
 

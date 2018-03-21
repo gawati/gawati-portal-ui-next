@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { NavLink } from 'react-router-dom';
+import Link from 'next/link';
 
 import {Aux, getDocType, displayDate, getLangDesc} from '../utils/generalhelper';
 import {convertObjectToEncodedString, setInRoute} from '../utils/routeshelper';
@@ -8,7 +7,7 @@ import {anFRBRcountry, anExprFRBRdate, anFRBRlanguage, anFRBRnumber} from '../ut
 import moment from 'moment';
 
 const CategoryLink = ({type}) => 
-    <NavLink to="/">{ getDocType(type)['category']}</NavLink>;
+    <Link href="/"><a>{getDocType(type)['category']}</a></Link>;
 
 const countryLink = (pageLang, country) =>
     setInRoute(
@@ -26,7 +25,7 @@ const countryLink = (pageLang, country) =>
 const CountryLink = ({doc, type, lang}) => {
     let country = anFRBRcountry(doc, type);
     return (
-        <NavLink to={ countryLink(lang, country.value) }>{ country.showAs }</NavLink>
+        <Link href={ countryLink(lang, country.value) }><a>{country.showAs}</a></Link>
     );
 }
 
@@ -49,7 +48,7 @@ const LanguageLink = ({doc, type, lang}) => {
     let docLang = anFRBRlanguage(doc, type)['language'];
     let langDesc =  getLangDesc(docLang) ;
     return (
-        <NavLink to={ langLink(lang, docLang)}>{langDesc.content}</NavLink>
+        <Link href={langLink(lang, docLang)}><a>{langDesc.content}</a></Link>
     );
 };
 
@@ -70,7 +69,7 @@ const DocumentDate = ({doc, type, lang}) => {
     let date = anExprFRBRdate(doc, type).date;
     let year = moment(date, "YYYY-MM-DD").year() ;
     return (
-        <NavLink to={ yearLink(lang, year) }>{displayDate(date, lang)}</NavLink> 
+        <Link href={yearLink(lang, year)}><a>{displayDate(date, lang)}</a></Link>
     );
 }
 

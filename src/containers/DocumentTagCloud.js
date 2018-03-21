@@ -1,6 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-
+import Link from 'next/link';
 import {anKeywords} from '../utils/akomantoso';
 import {randomInt} from '../utils/generalhelper';
 import {convertObjectToEncodedString, setInRoute} from '../utils/routeshelper';
@@ -31,9 +30,7 @@ const DocumentTagCloud = ({doc, type, lang}) => {
                         let randint = randomInt(14, 28);
                         return (
                         <span key={item.value} className={ `text-span-${randint} tag-item` }>
-                        <Link to={ keywordLink(lang, item.value) }>{
-                            item.showAs
-                        }</Link>
+                        <Link href={keywordLink(lang, item.value)}><a>{item.showAs}</a></Link>;
                         </span>
                         );
                     }
