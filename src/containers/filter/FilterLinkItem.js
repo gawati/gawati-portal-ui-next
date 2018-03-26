@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import Link from 'next/link';
 
-import { setInRoute, convertObjectToEncodedString } from '../../utils/routeshelper';
+import { setInNextRoute, convertObjectToEncodedString } from '../../utils/routeshelper';
 import {T} from '../../utils/i18nhelper';
 /**
  * Called by FilterLinkItems to render an individual link
@@ -13,7 +13,7 @@ const FilterLinkItem = ({ item, type, lang }) => {
     let obj = {} ;
     obj[type] = [item.value];
     console.log( " LINKITEM OBJ ", obj);
-    const url = setInRoute(
+    const url = setInNextRoute(
         'filter', 
         {
             lang: lang, 
@@ -32,7 +32,7 @@ const FilterLinkItem = ({ item, type, lang }) => {
         label = T(country) + count;
     }
     return (
-        <NavLink to={ url }>{label}</NavLink>
+        <Link href={ url } ><a>{label}</a></Link>
     );
 };
 

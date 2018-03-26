@@ -38,8 +38,8 @@ class FilterKeywords extends BaseFilter {
     }    
 
     keywordsUILoad(props) {
-        if (props.match.params.q) {
-            var search = convertEncodedStringToObject(props.match.params.q);
+        if (props.routeProps.query.q) {
+            var search = convertEncodedStringToObject(props.routeProps.query.q);
             if (search.keywords) {
                 console.log( "COMP DID MOUNT - SEARCH KEYWORDS ", search.keywords);
                 this.getKeywordLabels(search.keywords);
@@ -87,8 +87,8 @@ class FilterKeywords extends BaseFilter {
         const AsyncComponent = Select.Async;
         let filterType = this.props.filterType;
         let value = [];
-        if (this.props.match.params.q) {
-            var search = convertEncodedStringToObject(this.props.match.params.q);
+        if (this.props.routeProps.query.q) {
+            var search = convertEncodedStringToObject(this.props.routeProps.query.q);
             if (search.keywords) {
                 console.log( " SEARCH KEYWORDS ", search.keywords, this.state.keywordLabels);
                 value = search.keywords.map(

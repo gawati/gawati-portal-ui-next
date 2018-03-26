@@ -16,7 +16,7 @@ import { filterTypes } from '../../constants.js';
 import { apiGetCall } from '../../api.js';
 
 import { Aux, defaultLang, defaultListCount } from '../../utils/generalhelper';
-import { setInRoute, convertEncodedStringToObject, convertObjectToEncodedString } from '../../utils/routeshelper';
+import { setInNextRoute, convertEncodedStringToObject, convertObjectToEncodedString } from '../../utils/routeshelper';
 
 /**
  * This class provides the UI filter component provided on the right in the sidebar
@@ -28,8 +28,8 @@ class Filter extends React.Component {
     constructor(props) {
         super(props);
         var q = {};
-        if (this.props.match.params.q) {
-            q = convertEncodedStringToObject(this.props.match.params.q);
+        if (this.props.routeProps.query.q) {
+            q = convertEncodedStringToObject(this.props.routeProps.query.q);
         }
         this.state = {
             loading: true,
@@ -55,7 +55,7 @@ class Filter extends React.Component {
     }
 
     gotoSearchPage = () => {
-        let newParams = {...this.props.match.params};
+        let newParams = {...this.props.routeProps.query};
         if (!newParams.hasOwnProperty('lang')) {
             newParams.lang = defaultLang().lang;
         }
@@ -64,9 +64,10 @@ class Filter extends React.Component {
         newParams.from = 1;
         newParams.to = defaultListCount();
         newParams.q = convertObjectToEncodedString(this.state.q);
-        const updatedSearchUrl = setInRoute("filter", newParams);
-        const { router } = this.context;
-        router.history.push(updatedSearchUrl);    
+        const updatedSearchUrl = setInNextRoute("filter", newParams);
+        console.log(updatedSearchUrl);
+        // const { router } = this.context;
+        // router.history.push(updatedSearchUrl);    
     }
 
     /**
@@ -109,7 +110,7 @@ class Filter extends React.Component {
     
     render() {
         const { loading } = this.state;
-        const { match, i18n } = this.props;
+        const { routeProps, i18n } = this.props;
         if (loading === true) {
             return (
                 <Aux>
@@ -120,10 +121,10 @@ class Filter extends React.Component {
             let filterType = filterTypes();
             return (
                 <Aux>
-                    <FilterDate filterType={filterType.FILTER_DATE} filter={this.getFilterFor('FILTER_DATE')} showExpanded={ false } setFilterValue={ this.setFilterValue } match={match} i18n={ i18n } />
-                    <FilterCountry  filterType={filterType.FILTER_COUNTRY}  filter={this.getFilterFor('FILTER_COUNTRY')} showExpanded={ false } setFilterValue={ this.setFilterValue } match={match} i18n={ i18n } />
-                    <FilterLang  filterType={filterType.FILTER_LANG}  filter={this.getFilterFor('FILTER_LANG')} showExpanded={ false }  setFilterValue={ this.setFilterValue } match={match} i18n={ i18n } />
-                    <FilterKeywords   filterType={filterType.FILTER_KEYWORD}  filter={this.getFilterFor('FILTER_KEYWORD')} showExpanded={ false } setFilterValue={ this.setFilterValue } match={match} i18n={ i18n } />
+                    <FilterDate filterType={filterType.FILTER_DATE} filter={this.getFilterFor('FILTER_DATE')} showExpanded={ false } setFilterValue={ this.setFilterValue } routeProps={routeProps} i18n={ i18n } />
+                    <FilterCountry  filterType={filterType.FILTER_COUNTRY}  filter={this.getFilterFor('FILTER_COUNTRY')} showExpanded={ false } setFilterValue={ this.setFilterValue } routeProps={routeProps} i18n={ i18n } />
+                    <FilterLang  filterType={filterType.FILTER_LANG}  filter={this.getFilterFor('FILTER_LANG')} showExpanded={ false }  setFilterValue={ this.setFilterValue } routeProps={routeProps} i18n={ i18n } />
+                    <FilterKeywords   filterType={filterType.FILTER_KEYWORD}  filter={this.getFilterFor('FILTER_KEYWORD')} showExpanded={ false } setFilterValue={ this.setFilterValue } routeProps={routeProps} i18n={ i18n } />
                 </Aux>
             );        
         }

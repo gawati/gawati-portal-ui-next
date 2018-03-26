@@ -36,8 +36,8 @@ class FilterLang extends BaseFilter {
         let filterType = this.props.filterType;
         let langs = this.langs;
         let value = [];
-        if (this.props.match.params.q) {
-            var search = JSON.parse(decodeURIComponent(this.props.match.params.q));
+        if (this.props.routeProps.query.q) {
+            var search = JSON.parse(decodeURIComponent(this.props.routeProps.query.q));
             if (search.langs) {
                 value = search.langs.map(
                     langCode => langs.find( lang => lang.value === langCode)
@@ -59,7 +59,7 @@ class FilterLang extends BaseFilter {
                     value={value}
                 />
                 <small>
-                    <FilterLinkItems items={ langs } type="langs" lang={ this.props.match.params.lang }/>...
+                    <FilterLinkItems items={ langs } type="langs" lang={ this.props.routeProps.query._lang }/>...
                 </small>
                 <div className="grey-rule"/>
             </Aux>

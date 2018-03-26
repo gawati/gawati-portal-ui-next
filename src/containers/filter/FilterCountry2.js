@@ -37,9 +37,9 @@ class FilterCountry extends BaseFilter {
         let filterType = this.props.filterType;
         let countries = this.countries;
         let value = [];
-        if (this.props.match.params.q) {
+        if (this.props.routeProps.query.q) {
             // if there is a search url param look for the countries filter
-            var search = convertEncodedStringToObject(this.props.match.params.q);
+            var search = convertEncodedStringToObject(this.props.routeProps.query.q);
             if (search.countries) {
               // if there is a countries filter, then it has the country code, we need to send the full object 
               // for react-select to set the selection, so for each code find the countries matching and send an 
@@ -65,7 +65,7 @@ class FilterCountry extends BaseFilter {
                     value={value}
                 />
                 <small>
-                    <FilterLinkItems items={ countries } type="countries" lang={ this.props.match.params.lang }/>...
+                    <FilterLinkItems items={ countries } type="countries" lang={ this.props.routeProps.query._lang }/>...
                 </small>
                 <div className="grey-rule"/>
             </Aux>

@@ -32,8 +32,8 @@ class FilterDate extends BaseFilter {
         let filterType = this.props.filterType;
         let years = this.years;
         let value = [];
-        if (this.props.match.params.q) {
-            var search = JSON.parse(decodeURIComponent(this.props.match.params.q));
+        if (this.props.routeProps.query.q) {
+            var search = JSON.parse(decodeURIComponent(this.props.routeProps.query.q));
             if (search.years) {
                 value = search.years.map(
                     yearNo => years.find( year => year.value === yearNo)
@@ -55,7 +55,7 @@ class FilterDate extends BaseFilter {
                     value={value}
                 />
                 <small>
-                    <FilterLinkItems items={ years } type="years" lang={ this.props.match.params.lang }/>...
+                    <FilterLinkItems items={ years } type="years" lang={ this.props.routeProps.query._lang }/>...
                 </small>                
                 <div className="grey-rule"/>
             </Aux>

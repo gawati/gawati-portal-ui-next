@@ -49,6 +49,32 @@ export const setInRoute = (routeName, params) => {
 };
 
 /**
+ * Sets values in a route based on the provided map and produces a link
+ * e.g. for the route
+ * /filter/_lang/:lang/_count/:count/_from/:from/_to/:to/_q/:*q
+ * an object with {lang:..., count:..., from:..., }
+ * will set those parameters in route and produce a link like:
+ * /filter?_lang=lang&_count=count&_from=from&_to=to&_q=q*
+ * @param {string} routeName
+ * @param {object} params
+ */
+export const setInNextRoute = (routeName, params) => {
+    let route = getRoute(routeName);
+    let url = "/"+routeName;
+    let routeArr = route.split("/");
+    for (var i = 0; i < routeArr.length; i++) {
+        if (routeArr[i].startsWith("_")) {
+            url += "&" + routeArr[i];
+        } else if (routeArr[i].startsWith(":")) {
+            let partName = routeArr[i].replace(":", "").replace("*", "");
+            url += "=" + params[partName];
+        }
+    }
+    url.replace("&", "?");
+    return url;
+};
+
+/**
  * Modifies the parameter values in the present route.  Only the parameters
  * available in the supplied map are changed.  The rest of the route is
  * unchanged.
