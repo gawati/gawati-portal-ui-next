@@ -59,6 +59,11 @@ i18nInstance
           return app.render(req, res, '/doc', mergedQuery);
         })
 
+        server.get('/filter/_lang/:lang/_count/:count/_from/:from/_to/:to/_q/:q*', (req, res) => {
+          const mergedQuery = Object.assign({}, req.query, req.params)
+          return app.render(req, res, '/filter', mergedQuery);
+        })
+
         // use next.js
         server.get('*', (req, res) => handle(req, res))
 

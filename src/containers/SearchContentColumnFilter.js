@@ -20,15 +20,15 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
     constructor(props) {
         super(props);
         this.state = {
-            lang: this.props.match.params['lang'],
-            from: this.props.match.params['from'],
-            to: this.props.match.params['to'],
-            count: this.props.match.params['count'],
+            lang: this.props.routeProps.query['_lang'],
+            from: this.props.routeProps.query['_from'],
+            to: this.props.routeProps.query['_to'],
+            count: this.props.routeProps.query['_count'],
             totalPages: 0,
             loading: true,
             listing: undefined
         };
-        this.state.q = this.convertRoutePropToXQuery(this.props.match.params.q);
+        this.state.q = this.convertRoutePropToXQuery(this.props.routeProps.query._q);
         this.onChangePage = this.onChangePage.bind(this);
     }
 
@@ -101,9 +101,9 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
 
     generatePagination = () => {
         const { count, from, to, lang, totalPages, records } = this.state ;
-        const { q } = this.props.match.params ; 
+        const { _q } = this.props.routeProps.query ; 
         var pagination = {
-            q: q,
+            q: _q,
             count: count,
             from: from,
             to: to,
@@ -142,36 +142,36 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
     componentWillReceiveProps(nextProps) {
         // we need to always convert the url query to a back-end XQuery
         this.getSearch({
-            q: this.convertRoutePropToXQuery(nextProps.match.params.q),
-            count: parseInt(nextProps.match.params.count, 10),
-            from: parseInt(nextProps.match.params.from, 10),
-            to: parseInt(nextProps.match.params.to, 10)
+            q: this.convertRoutePropToXQuery(nextProps.routeProps.query._q),
+            count: parseInt(nextProps.routeProps.query._count, 10),
+            from: parseInt(nextProps.routeProps.query._from, 10),
+            to: parseInt(nextProps.routeProps.query._to, 10)
         });
     }    
 
-    renderDocumentLoading = () =>
+    renderDocumentLoading = (t) =>
         <ListingLoading>
-            <h1 className="listingHeading">{T("Document Results")}</h1>
+            <h1 className="listingHeading">{t("Document Results")}</h1>
         </ListingLoading> ;
 
-    renderNoDocumentsFound = () =>
+    renderNoDocumentsFound = (t) =>
         <DivListing>
-            <h1 className="listingHeading">{T("Document Results")}</h1>
+            <h1 className="listingHeading">{t("Document Results")}</h1>
             <div>No Documents Found</div>
         </DivListing> ;
 
-    renderListing = () => {
+    renderListing = (t) => {
         let pagination = this.generatePagination() ;
         let content = 
-            <DivListing lang={this.props.match.params.lang}>
-                <h1 className="listingHeading">{T("Document Results")}</h1>
+            <DivListing lang={this.props.routeProps.query._lang}>
+                <h1 className="listingHeading">{t("Document Results")}</h1>
                 <DivFeed>
                     <SearchListPaginator pagination={pagination} onChangePage={(this.onChangePage)} />
                 </DivFeed>
                 {
                 this.state.listing.map(abstract => {
                     return (
-                    <ExprAbstract key={abstract['expr-iri']} match={this.props.match} abstract={abstract} />   
+                    <ExprAbstract key={abstract['expr-iri']} lang={this.props.routeProps.query._lang} abstract={abstract} t={t} />  
                     )
                 })
                 }
@@ -185,13 +185,15 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
 
     render() {
         const { loading, listing, records } = this.state;
+        const {t} = this.props;
+        console.log(t);
         if (loading === true || listing === undefined ) {
-            return this.renderDocumentLoading();
+            return this.renderDocumentLoading(t);
         } else 
         if (parseInt(records, 10) === 0 || listing === undefined) {
-            return this.renderNoDocumentsFound();
+            return this.renderNoDocumentsFound(t);
         } else {
-            return this.renderListing();
+            return this.renderListing(t);
         }   
     }
 }

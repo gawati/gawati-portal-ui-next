@@ -11,7 +11,7 @@ class BaseSearchContentColumn extends React.Component {
             loading: true,
             listing: undefined
         };
-        Object.assign(this.state, this.props.match.params);
+        Object.assign(this.state, this.props.routeProps.query);
     }
 
     onChangePage(newPage) {

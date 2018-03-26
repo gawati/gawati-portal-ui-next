@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import Router from 'next/router'
 
 // import FilterCountry from './FilterCountry';
 import FilterDate from './FilterDate2';
@@ -56,8 +57,10 @@ class Filter extends React.Component {
 
     gotoSearchPage = () => {
         let newParams = {...this.props.routeProps.query};
-        if (!newParams.hasOwnProperty('lang')) {
+        if (!newParams.hasOwnProperty('_lang')) {
             newParams.lang = defaultLang().lang;
+        } else {
+            newParams.lang = this.props.routeProps.query._lang;
         }
         debugger;
         newParams.count = defaultListCount();
@@ -65,9 +68,7 @@ class Filter extends React.Component {
         newParams.to = defaultListCount();
         newParams.q = convertObjectToEncodedString(this.state.q);
         const updatedSearchUrl = setInNextRoute("filter", newParams);
-        console.log(updatedSearchUrl);
-        // const { router } = this.context;
-        // router.history.push(updatedSearchUrl);    
+        Router.push(updatedSearchUrl); 
     }
 
     /**

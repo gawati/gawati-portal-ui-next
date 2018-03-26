@@ -9,7 +9,7 @@ import PageUpperBorder from './PageUpperBorder';
 import NoMatch from './NoMatch';
 import HomeContentArea from './HomeContentArea';
 import DocumentContentArea from './DocumentContentArea';
-// import ListContentArea from './ListContentArea';
+import ListContentArea from './ListContentArea';
 import PageContentArea from './PageContentArea';
 // import Footer from './Footer';
 // import { Redirect } from 'react-router'
@@ -20,7 +20,8 @@ import {PropsRouteNext} from '../utils/routeshelper';
 const pathComponents = {
     "/home": HomeContentArea,
     "/content": PageContentArea,
-    "/doc": DocumentContentArea
+    "/doc": DocumentContentArea,
+    "/filter": ListContentArea
 }
 
 class Page extends React.Component {

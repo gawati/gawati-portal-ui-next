@@ -12,7 +12,7 @@ class SideBarColumn extends React.Component{
             <div className={ `right col-3` }  ref={this.props.setCollapsible} id="filter-container">
                 <div className={ `w-clearfix white-wrapper` }>
                     <Filter routeProps={ routeProps } i18n={ i18n } t={t}/>
-                    <p className="cc-law-libray">{T("The African Law Library")}</p>
+                    <p className="cc-law-libray">{t("The African Law Library")}</p>
                 </div>
             </div>
         );

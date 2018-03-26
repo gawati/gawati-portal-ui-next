@@ -1,9 +1,9 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import Link from 'next/link';
 //import {stringTemplate} from '../utils/stringhelper';
 import {filterMap} from '../utils/generalhelper';
 import BasePaginator from './BasePaginator';
-import { setInRoute } from '../utils/routeshelper';
+import { setInNextRoute } from '../utils/routeshelper';
 import FontAwesome from 'react-fontawesome';
 import 'font-awesome/css/font-awesome.css';
 
@@ -19,14 +19,16 @@ class SearchListPaginator extends BasePaginator {
      * Generates the Link url from passed in linkRoute property in the object.
      * It is the responsibility of the caller component to pass in the right 
      * linkRoute corresponding to the pagination object.
-     * 
+     * Caution! Do not remove <span>; See https://github.com/zeit/next.js/issues/1490#issuecomment-324643124
      * @param {object} pagination object passed as a prop
      * @memberof SearchListPaginator
      */
     pageLinkEval = (pgn) => {
-        let st = setInRoute(pgn.linkRoute, pgn);
+        let st = setInNextRoute(pgn.linkRoute, pgn);
         return (
-        <Link to={st} onClick={() => this.handleChangePage(pgn) }>{ pgn.text }</Link>
+        <Link href={st}>
+            <span><a onClick={() => this.handleChangePage(pgn) }>{ pgn.text }</a></span>
+        </Link>
         );
     }
 

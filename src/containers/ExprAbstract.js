@@ -82,7 +82,7 @@ class ExprAbstract extends React.Component {
 
     render() {
         let abstract = this.props.abstract ;
-        let pageLang = this.props.lang || this.props.match.params.lang; 
+        let pageLang = this.props.lang;
         let yearLink = this.yearLink(pageLang, abstract);
         let langLink = this.langLink(pageLang, abstract);
         let countryLink = this.countryLink(pageLang, abstract);
