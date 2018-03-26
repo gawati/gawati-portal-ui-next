@@ -7,7 +7,8 @@ module.exports = ({ options, env }) => {
     plugins: {
       'postcss-css-variables': {
           variables: require("./src/css/themes/"+theme+"/vars.js")
-      }
+      },
+      'postcss-url': {url: 'inline'}
     }
   })
 }
