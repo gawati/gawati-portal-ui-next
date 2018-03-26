@@ -32,8 +32,8 @@ class FilterDate extends BaseFilter {
         let filterType = this.props.filterType;
         let years = this.years;
         let value = [];
-        if (this.props.routeProps.query.q) {
-            var search = JSON.parse(decodeURIComponent(this.props.routeProps.query.q));
+        if (this.props.routeProps.query._q) {
+            var search = JSON.parse(decodeURIComponent(this.props.routeProps.query._q));
             if (search.years) {
                 value = search.years.map(
                     yearNo => years.find( year => year.value === yearNo)

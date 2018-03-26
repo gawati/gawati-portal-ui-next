@@ -36,8 +36,8 @@ class FilterLang extends BaseFilter {
         let filterType = this.props.filterType;
         let langs = this.langs;
         let value = [];
-        if (this.props.routeProps.query.q) {
-            var search = JSON.parse(decodeURIComponent(this.props.routeProps.query.q));
+        if (this.props.routeProps.query._q) {
+            var search = JSON.parse(decodeURIComponent(this.props.routeProps.query._q));
             if (search.langs) {
                 value = search.langs.map(
                     langCode => langs.find( lang => lang.value === langCode)
