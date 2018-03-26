@@ -70,8 +70,7 @@ export const setInNextRoute = (routeName, params) => {
             url += "=" + params[partName];
         }
     }
-    url.replace("&", "?");
-    return url;
+    return url.replace("&", "?");
 };
 
 /**
