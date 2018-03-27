@@ -14,8 +14,8 @@ import GawatiAuthHelper from '../utils/GawatiAuthHelper';
 
 
 const Logo = () =>
-    <Link className="nav-brand" href="/">
-        <a><div className="logo-img"/></a>
+    <Link href="/">
+        <a className="nav-brand"><div className="logo-img"/></a>
     </Link>
     ;
 
@@ -26,16 +26,13 @@ const SiteHeading = ({t}) =>
     </div>
     ;
 
-// const TopBarUpper = ({i18n, routeProps}) => {
-//         return (
-//             <div className="col-12">
-//                 <div style={ {"width":"50%:", "textAlign": "right", "marginRight":"40px", "paddingBottom":"10px"} }>
-//                 <LanguageSwitcher i18n={i18n} routeProps={routeProps} />
-//                 </div>
-//             </div>
-//         );
-// };
-    ;
+const TopBarUpper = ({i18n, routeProps}) =>
+    <div className="col-12">
+        <div style={ {"width":"50%:", "textAlign": "right", "marginRight":"40px", "paddingBottom":"10px"} }>
+        <LanguageSwitcher i18n={i18n} routeProps={routeProps} />
+        </div>
+    </div>;
+
 
 const SearchBox = ({lang, t}) =>
     <div className={ `col ` }>
@@ -105,7 +102,7 @@ class TopBar extends React.Component {
                 }
                 </div>
                 <div>
-                TOP UPPER BAR
+                <TopBarUpper i18n={ this.props.i18n } routeProps={ this.props.routeProps } />
                 </div>
                 <div className="container-fluid">
                     <Logo />
@@ -156,4 +153,5 @@ class TopBar extends React.Component {
 
 export default TopBar;
 
-// <TopBarUpper i18n={ this.props.i18n } routeProps={ this.props.routeProps } />
+
+

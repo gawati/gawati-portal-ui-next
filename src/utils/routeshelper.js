@@ -106,21 +106,7 @@ export const editInRoute = (params, match) => {
  * @param {object} routeProps object
  */
 export const editInNextRoute = (params, routeProps) => {
-    let routeArr = match.path.split("/");
-    let updatedRouteArr = routeArr.map( part => {
-        if (part.startsWith(":")) {
-            let partName = part.replace(":", "").replace("*", "");
-            if (params[partName])
-                return params[partName];
-            else
-                return match.params[partName];
-        } else if (part.startsWith("*")) {
-            return match.params['0'];
-        } else {
-            return part;
-        }
-    });
-    return updatedRouteArr.join("/");
+    return "/";
 };
 
 
