@@ -186,7 +186,6 @@ class SearchContentColumnFilter extends BaseSearchContentColumn {
     render() {
         const { loading, listing, records } = this.state;
         const {t} = this.props;
-        console.log(t);
         if (loading === true || listing === undefined ) {
             return this.renderDocumentLoading(t);
         } else 
