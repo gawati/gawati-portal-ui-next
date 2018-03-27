@@ -10,8 +10,9 @@ import NotifBar from './NotifBar';
 import DivRow from './DivRow';
 import '../css/TopBar.css';
 
-import GawatiAuthHelper from '../utils/GawatiAuthHelper';
+// import GawatiAuthHelper from '../utils/GawatiAuthHelper';
 
+let GawatiAuthHelper;
 
 const Logo = () =>
     <Link href="/">
@@ -47,6 +48,7 @@ const SearchBox = ({lang, t}) =>
 class TopBar extends React.Component {
     state = { username: 'guest', authenticated: 'false'}
     handleChange = (e, { name, value }) => { this.setState({ [name]: value }); }
+
     login = () => {
         GawatiAuthHelper.login();
     }
@@ -90,6 +92,7 @@ class TopBar extends React.Component {
         }
     }
     componentDidMount() {
+        GawatiAuthHelper = require("../utils/GawatiAuthHelper").default;
         this.checkLogin();
     }
 
