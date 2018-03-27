@@ -1,11 +1,11 @@
 import React from 'react';
 // import { Switch } from 'react-router-dom';
-
+import NoSSR from 'react-no-ssr';
 import {Aux} from '../utils/generalhelper';
 // import {getRoute} from '../utils/routeshelper';
 
 import PageUpperBorder from './PageUpperBorder';
-// import TopBar from './TopBar';
+import TopBar from './TopBar';
 import NoMatch from './NoMatch';
 import HomeContentArea from './HomeContentArea';
 import DocumentContentArea from './DocumentContentArea';
@@ -69,6 +69,10 @@ class Page extends React.Component {
         return (
             <Aux>
                 {css}
+                <NoSSR onSSR={"Loading..."}>
+                    <PropsRouteNext component={TopBar} i18n={this.props.i18n}
+                    slideToggle={this.slideToggle} routeProps={this.props.routeProps} t={this.props.t} />
+                </NoSSR>
                 <PropsRouteNext component={pathComponents[this.props.routeProps.pathname]}  i18n={this.props.i18n} setCollapsible={this.setCollapsible} routeProps={this.props.routeProps} t={this.props.t} />
             </Aux>
         );

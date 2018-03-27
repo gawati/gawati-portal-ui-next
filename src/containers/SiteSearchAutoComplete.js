@@ -162,9 +162,10 @@ class SiteSearchAutoComplete extends React.Component {
     getSuggestionValue = (suggestion) => suggestion.exprAbstract.publishedAs ;  
 
     render() {
+        let t = this.props.t;
         const { value, suggestions, loading } = this.state;
         const inputProps = {
-          placeholder: T("type at least 3 letters"),
+          placeholder: t("type at least 3 letters"),
           value,
           loading: loading ? "yes" : "no",
           onChange: this.onChange

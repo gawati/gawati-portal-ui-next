@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import Link from 'next/link';
 import {versionInfo} from '../utils/versionhelper';
 import {T} from '../utils/i18nhelper';
 import SiteSearchAutoComplete from '../containers/SiteSearchAutoComplete';
@@ -9,41 +9,39 @@ import mobileButton from '../images/th-menu.png';
 import NotifBar from './NotifBar';
 import DivRow from './DivRow';
 import '../css/TopBar.css';
-import Keycloak from 'keycloak-js';
-import keycloakJson from '../configs/keycloak.json';
 
-const kc = Keycloak(keycloakJson);
+import GawatiAuthHelper from '../utils/GawatiAuthHelper';
 
 
 const Logo = () =>
-    <NavLink className="nav-brand" to="/">
-        <div className="logo-img"/>
-    </NavLink>
+    <Link className="nav-brand" href="/">
+        <a><div className="logo-img"/></a>
+    </Link>
     ;
 
-const SiteHeading = () =>
+const SiteHeading = ({t}) =>
     <div className="logotype">
-        <h1>{ T("african law library")}</h1>
-        <h2>{ T("innovative access to law") }</h2>
+        <h1>{ t("african law library")}</h1>
+        <h2>{ t("innovative access to law") }</h2>
     </div>
     ;
 
-const TopBarUpper = ({i18n, match}) => {
-        return (
-            <div className="col-12">
-                <div style={ {"width":"50%:", "textAlign": "right", "marginRight":"40px", "paddingBottom":"10px"} }>
-                <LanguageSwitcher i18n={i18n} match={match} />
-                </div>
-            </div>
-        );
-};
+// const TopBarUpper = ({i18n, routeProps}) => {
+//         return (
+//             <div className="col-12">
+//                 <div style={ {"width":"50%:", "textAlign": "right", "marginRight":"40px", "paddingBottom":"10px"} }>
+//                 <LanguageSwitcher i18n={i18n} routeProps={routeProps} />
+//                 </div>
+//             </div>
+//         );
+// };
     ;
 
-const SearchBox = (lang) =>
+const SearchBox = ({lang, t}) =>
     <div className={ `col ` }>
         <form className="search-form" data-name="Email Form" id="email-form" name="email-form">
             <div className="div-block w-clearfix">
-               <SiteSearchAutoComplete  lang={lang}/> 
+               <SiteSearchAutoComplete  lang={lang} t={t}/>
             </div>
         </form>
     </div>
@@ -53,7 +51,7 @@ class TopBar extends React.Component {
     state = { username: 'guest', authenticated: 'false'}
     handleChange = (e, { name, value }) => { this.setState({ [name]: value }); }
     login = () => {
-        kc.login();
+        GawatiAuthHelper.login();
     }
 
     toggleDropDown = ()=>{
@@ -61,14 +59,11 @@ class TopBar extends React.Component {
 	}
 
     logout = () => {
-        kc.init();
-        localStorage.setItem('authenticated', 'false');
-        localStorage.setItem('username', 'guest');
-        kc.logout();
+        GawatiAuthHelper.logout();
     }
 
     register = () => {
-        kc.register();
+        GawatiAuthHelper.register();
     }
 
     getParameterByName = (variable, url)=>{
@@ -87,59 +82,51 @@ class TopBar extends React.Component {
     }
 
     checkLogin = () =>{
-        if(localStorage.getItem('authenticated')==='false'){
-            kc.init().success(function(authenticated) {
-                if(authenticated){
-                    localStorage.setItem('authenticated', 'true');
-                    kc.loadUserProfile().success(function(profile) {
-                        localStorage.setItem('username', profile.username);
-                        window.location.reload();
-                    }).error(function() {
-                        localStorage.setItem('username', 'guest');
-                    });
-                }else{
-                    localStorage.setItem('authenticated', 'false');
-                    localStorage.setItem('username', 'guest');
-                }
-            }).error(function(error) {
-                alert('failed to initialize'+error);
-            })
+        if(GawatiAuthHelper.isUserLoggedIn()){
+            this.updateState('true', GawatiAuthHelper.getUserName());
+        }else{
+            const me = this;
+            GawatiAuthHelper.save(function(response){
+                var auth = GawatiAuthHelper.isUserLoggedIn() ? 'true' : 'false';
+                me.updateState(auth, GawatiAuthHelper.getUserName());
+            });
         }
-        //this.updateState(localStorage.getItem('authenticated'), localStorage.getItem('username'));
     }
     componentDidMount() {
         this.checkLogin();
     }
+
     render() {
+        let t = this.props.t;
     	return (
             <header className="navigation-bar">
                 <div className="version-info">{
-                    T("version") + " = " + versionInfo().version
+                    t("version") + " = " + versionInfo().version
                 }
                 </div>
-                <div className="row col-12">
-                <TopBarUpper i18n={ this.props.i18n } match={ this.props.match } />
+                <div>
+                TOP UPPER BAR
                 </div>
                 <div className="container-fluid">
                     <Logo />
-                    <SiteHeading />
+                    <SiteHeading t={t} />
                     <div className="mobile-button" onClick={this.props.slideToggle}>
                         <img alt="menu" src={mobileButton}  />
                     </div>
                     <div className="search-form-container col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <DivRow>
-                        <SearchBox lang={ this.props.match.params.lang }></SearchBox>
+                        <SearchBox lang={ this.props.routeProps.query._lang } t={t}></SearchBox>
                         <NotifBar />
                         <div className="login col-3">
                             {
-                            localStorage.getItem('authenticated')==='true' ? 
+                            this.state.authenticated==='true' ?
                             <div className="dropdown">
                                 <div onClick={this.toggleDropDown} className="dropbtn">
                                     <i className="fa fa-user-circle fa-2x" aria-hidden="true"></i>
                                 </div>
                                 <div id="myDropdown" className="dropdown-content">
                                     <button className={ `btn btn-link loggedIn` }>
-                                        Logged in as <b>{localStorage.getItem('username')}</b>
+                                        Logged in as <b>{this.state.username}</b>
                                     </button>
                                     <button className={ `btn btn-link` }  onClick={this.logout}>
                                         Sign out
@@ -148,11 +135,11 @@ class TopBar extends React.Component {
                             </div> : 
                             <div className="inline-elements">
                                 <div className="click" onClick={ this.login }>
-                                    {T("Sign in")} 
+                                    {t("Sign in")}
                                 </div>
-                                <span className="or">&nbsp;&nbsp;{T("or")}&nbsp;&nbsp;</span>
+                                <span className="or">&nbsp;&nbsp;{t("or")}&nbsp;&nbsp;</span>
                                 <div className="click" onClick={ this.register}> 
-                                    {T("Sign up")}
+                                    {t("Sign up")}
                                 </div>
                             </div> 
                             }
@@ -168,3 +155,5 @@ class TopBar extends React.Component {
 }
 
 export default TopBar;
+
+// <TopBarUpper i18n={ this.props.i18n } routeProps={ this.props.routeProps } />

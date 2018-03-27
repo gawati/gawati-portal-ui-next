@@ -98,6 +98,31 @@ export const editInRoute = (params, match) => {
     return updatedRouteArr.join("/");
 };
 
+/**
+ * Modifies the parameter values in the present route.  Only the parameters
+ * available in the supplied map are changed.  The rest of the route is
+ * unchanged.
+ * @param {object} supplied parameter key-value map
+ * @param {object} routeProps object
+ */
+export const editInNextRoute = (params, routeProps) => {
+    let routeArr = match.path.split("/");
+    let updatedRouteArr = routeArr.map( part => {
+        if (part.startsWith(":")) {
+            let partName = part.replace(":", "").replace("*", "");
+            if (params[partName])
+                return params[partName];
+            else
+                return match.params[partName];
+        } else if (part.startsWith("*")) {
+            return match.params['0'];
+        } else {
+            return part;
+        }
+    });
+    return updatedRouteArr.join("/");
+};
+
 
 export const convertObjectToEncodedString = (obj) => encodeURIComponent(JSON.stringify(obj)) ;
     
