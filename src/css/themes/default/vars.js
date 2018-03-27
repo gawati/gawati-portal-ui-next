@@ -79,7 +79,7 @@ module.exports = {
     '--topbar-bg': '#fff', /* SIG */ 
     '--topbar-submit-button-bg-color': '#1abc9c',
     '--topbar-box-shadow':  '0 1px 0 0 rgba(0, 0, 0, .06)',
-    '--logo-img': 'url("../../themes/default/assets/logo.png")',
+    '--logo-img': 'url("themes/default/assets/logo.png")',
     '--logo-color': '#7a737a',
     '--logo-color2': '#7a737a',
     '--languageswitcher-highlight-bg-color': '#e0ddd7',

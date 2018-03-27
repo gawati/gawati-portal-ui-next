@@ -78,7 +78,7 @@ module.exports = {
     '--topbar-bg': 'white',
     '--topbar-submit-button-bg-color': 'rgb(250, 162, 28)',
     '--topbar-box-shadow':  '0 1px 0 0 rgba(0, 0, 0, .06)',
-    '--logo-img': 'url("./assets/logo.png")',
+    '--logo-img': 'url("themes/default/assets/logo.png")',
     '--logo-color': '#231f20',
     '--logo-color2': '#90292a',
     '--languageswitcher-highlight-bg-color': 'rgb(51, 51, 51)',
