@@ -41,7 +41,9 @@ i18nInstance
         server.post('/static/locales/add/:lng/:ns', i18nextMiddleware.missingKeyHandler(i18nInstance))
 
         server.get('/_lang/:lang', (req, res) => {
-          const mergedQuery = Object.assign({}, req.query, req.params)
+          //Set language to 'en' for testing purposes. Avoids 'en-GB'/'en-US' troubles
+          const query = Object.assign({}, req.query, {'_lang': 'en'});
+          const mergedQuery = Object.assign({}, query, req.params)
           return app.render(req, res, '/home', mergedQuery);
         })
 
