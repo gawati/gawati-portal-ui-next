@@ -21,7 +21,8 @@ const pathComponents = {
     "/home": HomeContentArea,
     "/content": PageContentArea,
     "/doc": DocumentContentArea,
-    "/filter": ListContentArea
+    "/filter": ListContentArea,
+    "/recent": ListContentArea
 }
 
 class Page extends React.Component {

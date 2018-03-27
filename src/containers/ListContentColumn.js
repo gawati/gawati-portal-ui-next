@@ -16,10 +16,10 @@ class ListContentColumn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            lang: this.props.match.params['lang'],
-            count: this.props.match.params['count'],
-            from: this.props.match.params['from'],
-            to: this.props.match.params['to'],
+            lang: this.props.routeProps.query['_lang'],
+            count: this.props.routeProps.query['_count'],
+            from: this.props.routeProps.query['_from'],
+            to: this.props.routeProps.query['_to'],
             records: 0,
             totalPages: 0,
             orderedBy: '',
@@ -67,9 +67,9 @@ class ListContentColumn extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         this.getListing({
-            count: parseInt(nextProps.match.params.count, 10),
-            from: parseInt(nextProps.match.params.from, 10),
-            to: parseInt(nextProps.match.params.to, 10)
+            count: parseInt(nextProps.routeProps.query._count, 10),
+            from: parseInt(nextProps.routeProps.query._from, 10),
+            to: parseInt(nextProps.routeProps.query._to, 10)
         });
     }
 
@@ -102,7 +102,7 @@ class ListContentColumn extends React.Component {
         } else {        
             let pagination = this.generatePagination() ;
             let content = 
-                <DivListing lang={this.props.match.params.lang}>
+                <DivListing lang={this.props.routeProps.query._lang}>
                         <h1 className="listingHeading">Recent Documents</h1>
                         <DivFeed>
                             <RecentListPaginator pagination={pagination} onChangePage={this.onChangePage} />
@@ -110,7 +110,7 @@ class ListContentColumn extends React.Component {
                         {
                         this.state.listing.map(abstract => {
                             return (
-                            <ExprAbstract key={abstract['expr-iri']} abstract={abstract} lang={this.state.lang}/>   
+                            <ExprAbstract key={abstract['expr-iri']} abstract={abstract} lang={this.state.lang} t={this.props.t}/>
                             )
                         })
                         }

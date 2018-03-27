@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import Link from 'next/link';
 import BasePaginator from './BasePaginator';
 import FontAwesome from 'react-fontawesome';
 import 'font-awesome/css/font-awesome.css';
@@ -7,14 +7,9 @@ import 'font-awesome/css/font-awesome.css';
 class RecentListPaginator extends BasePaginator {
 
     pageLink = (pager, lang, count, from, to, text) => 
-        <Link to={ 
-            "/recent/_lang/"+ lang + 
-            "/_count/"+ count +
-            "/_from/" + from  +
-            "/_to/" + to  
-            } onClick={() => this.handleChangePage({lang: lang, count: count, from: from, to: to, text: text})}>
-            { text }
-        </Link>;
+        <Link href={"/recent?_lang="+ lang + "&_count=" + count + "&_from=" + from + "&_to=" + to}>
+            <span><a onClick={() => this.handleChangePage({lang: lang, count: count, from: from, to: to, text: text})}>{ text }</a></span>
+        </Link>
 
     pageNavLink = (disableCondition, pager, lang, count, from, to, text) =>
             <li className={ disableCondition ? "disabled": ""}>

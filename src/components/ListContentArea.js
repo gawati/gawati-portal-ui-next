@@ -1,7 +1,7 @@
 import React from 'react';
 import {getRoute} from '../utils/routeshelper';
 
-// import ListContentColumn from '../containers/ListContentColumn';
+import ListContentColumn from '../containers/ListContentColumn';
 // import ListThemeContentColumn from '../containers/ListThemeContentColumn';
 import SearchContentColumnFilter from '../containers/SearchContentColumnFilter';
 
@@ -12,7 +12,7 @@ import DivRow from './DivRow';
 import {PropsRouteNext} from '../utils/routeshelper';
 
 const pathComponents = {
-    // "/recent": ListContentColumn,
+    "/recent": ListContentColumn,
     // "/theme": ListThemeContentColumn,
     "/filter": SearchContentColumnFilter
 }
