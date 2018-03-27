@@ -133,7 +133,7 @@ class HomeContentColumn extends React.Component {
                     <RecentDocs loading={latest.loading} recentDocs={latest.content} tab={1} lang={_lang} t={t}/> 
                 </TabPanel>
                 <TabPanel>
-                    <ThemeOfTheMonth loading={themes.loading} themes={themes.content} tab={2} lang={_lang}/>
+                    <ThemeOfTheMonth loading={themes.loading} themes={themes.content} tab={2} lang={_lang} t={t}/>
                 </TabPanel>
             </Tabs>
         </div>

@@ -18,11 +18,11 @@ class ListThemeContentColumn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            lang: this.props.match.params['lang'],
-            count: this.props.match.params['count'],
-            from: this.props.match.params['from'],
-            to: this.props.match.params['to'],
-            themes : this.props.match.params['themes'],
+            lang: this.props.routeProps.query['_lang'],
+            count: this.props.routeProps.query['_count'],
+            from: this.props.routeProps.query['_from'],
+            to: this.props.routeProps.query['_to'],
+            themes : this.props.routeProps.query['_themes'],
             records: 0,
             totalPages: 0,
             orderedBy: '',
@@ -102,7 +102,7 @@ class ListThemeContentColumn extends React.Component {
             );
         } else {        
             let pagination = this.generatePagination() ;
-            let _lang = this.props.match.params.lang;
+            let _lang = this.props.routeProps.query._lang;
             let content = 
             <DivListing lang={_lang}>
                 <h1 className="listingHeading">Theme</h1>
@@ -114,10 +114,10 @@ class ListThemeContentColumn extends React.Component {
                     }
                     {
                     !Array.isArray(this.state.listing) ?
-                    <ExprAbstract key={this.state.listing['expr-iri']} abstract={this.state.listing} lang={_lang} /> :    
+                    <ExprAbstract key={this.state.listing['expr-iri']} abstract={this.state.listing} lang={_lang} t={this.props.t} /> :
                     this.state.listing.map(abstract => {
                         return (
-                        <ExprAbstract key={abstract['expr-iri']} abstract={abstract} lang={_lang}/>   
+                        <ExprAbstract key={abstract['expr-iri']} abstract={abstract} lang={_lang} t={this.props.t}/>
                         )
                     })
                     }

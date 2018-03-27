@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import Link from 'next/link';
 import BasePaginator from './BasePaginator';
 import FontAwesome from 'react-fontawesome';
 import 'font-awesome/css/font-awesome.css';
@@ -7,14 +7,8 @@ import 'font-awesome/css/font-awesome.css';
 class ThemeListPaginator extends BasePaginator {
 
     pageLink = (pager, lang, themes, count, from, to, text) => 
-        <Link to={ 
-            "/themes/_lang/"+ lang + 
-            "/_themes/" + themes +
-            "/_count/"+ count +
-            "/_from/" + from  +
-            "/_to/" + to  
-            } onClick={() => this.handleChangePage({lang: lang, themes: themes.split('|'), count: count, from: from, to: to, text: text})}>
-            { text }
+        <Link href={"/themes?_lang="+ lang + "&_themes=" + themes + "&_count="+ count + "&_from=" + from  + "&_to=" + to}>
+            <span><a onClick={() => this.handleChangePage({lang: lang, themes: themes.split('|'), count: count, from: from, to: to, text: text})}>{ text }</a></span>
         </Link>;
 
     pageNavLink = (disableCondition, pager, lang, themes, count, from, to, text) =>

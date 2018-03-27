@@ -2,7 +2,7 @@ import React from 'react';
 import {getRoute} from '../utils/routeshelper';
 
 import ListContentColumn from '../containers/ListContentColumn';
-// import ListThemeContentColumn from '../containers/ListThemeContentColumn';
+import ListThemeContentColumn from '../containers/ListThemeContentColumn';
 import SearchContentColumnFilter from '../containers/SearchContentColumnFilter';
 
 import SideBarColumn from './SideBarColumn';
@@ -13,7 +13,7 @@ import {PropsRouteNext} from '../utils/routeshelper';
 
 const pathComponents = {
     "/recent": ListContentColumn,
-    // "/theme": ListThemeContentColumn,
+    "/themes": ListThemeContentColumn,
     "/filter": SearchContentColumnFilter
 }
 

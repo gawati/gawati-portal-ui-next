@@ -22,7 +22,8 @@ const pathComponents = {
     "/content": PageContentArea,
     "/doc": DocumentContentArea,
     "/filter": ListContentArea,
-    "/recent": ListContentArea
+    "/recent": ListContentArea,
+    "/themes": ListContentArea,
 }
 
 class Page extends React.Component {

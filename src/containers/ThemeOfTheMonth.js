@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import Link from 'next/link';
 
 import {homePageFilterWords} from '../constants';
 import {Aux} from '../utils/generalhelper';
@@ -9,14 +9,14 @@ import DivFeed from '../components/DivFeed';
 import GwSpinner from '../components/GwSpinner'
 import ExprAbstract from './ExprAbstract';
 
-const ThemeOfTheMonth = ({loading, themes, tab, lang}) =>
+const ThemeOfTheMonth = ({loading, themes, tab, lang, t}) =>
     <div className={ `tab-pane tab-active` } data-tab={ `t${tab}` }>
-        <ThemeIntro loading={loading} />
-        {getThemeSummary(loading, themes, tab, lang)}
+        <ThemeIntro loading={loading} t={t} />
+        {getThemeSummary(loading, themes, tab, lang, t)}
     </div>
     ;
 
-const ThemeIntro = ({loading}) => {
+const ThemeIntro = ({loading, t}) => {
         let homePageIntro = homePageFilterWords();
         return (
         <DivFeed>
@@ -30,27 +30,29 @@ const ThemeIntro = ({loading}) => {
         );
 }
 
-const getThemeSummary = (loading, themes, tab, lang) => {
+const getThemeSummary = (loading, themes, tab, lang, t) => {
     if (loading === true) {
         return (<noscript />);
     } else {
         return (
             <Aux>
-                <ThemeSummary themes={themes} lang={lang} />
+                <ThemeSummary themes={themes} lang={lang} t={t} />
                 <div className="button-wrapper">
-                    <NavLink className={ `button w-button` } to={ `/themes/_lang/` + lang + `/_themes/${homePageFilterWords()["keywords"].join("|") }/_count/10/_from/1/_to/10`}>{t("More posts")}&#160;→</NavLink>
+                    <Link href={ `/themes?_lang=` + lang + `&_themes=${homePageFilterWords()["keywords"].join("|") }&_count=10&_from=1&_to=10`}>
+                        <a className={ `button w-button` }>{t("More posts")}&#160;→</a>
+                    </Link>
                 </div>
             </Aux>
         );
     }
 }
 
-const ThemeSummary = ({themes, lang}) => 
+const ThemeSummary = ({themes, lang, t}) =>
         <Aux>
         {
             themes.map(abstract => {
                 return (
-                <ExprAbstract key={abstract['expr-iri']} abstract={abstract} lang={lang}/>   
+                <ExprAbstract key={abstract['expr-iri']} abstract={abstract} lang={lang} t={t} />
                 )
             })
         }
