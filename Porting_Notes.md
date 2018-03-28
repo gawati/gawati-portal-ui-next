@@ -24,9 +24,9 @@ Note: Code was restructured from CRA and React Router's **Switch** based routing
         - To share CSS variables with JS code, we need to have a vars.js file with all variables listed (instead of vars.css). post-css-variables plugin requires a JS object. 
 
 #### Routing & the Link API
-  - <Link> is used to perform client side navigation since a plain <a> will always go to the server.
-  - Style prop on <Link> has no effect. Link is just a wrapper. Style needs to be applied to its children.
-  - <Link> Cannot have onClick(). Use this [link-onClick-workaround] instead.
+  - Link is used to perform client side navigation since a plain the anchor tag will always go to the server.
+  - Style prop on Link has no effect. Link is just a wrapper. Style needs to be applied to its children.
+  - Link Cannot have onClick(). Use this [link-onClick-workaround] instead.
   - Use Link's 'as' prop for route masking/custom routes. 
   - All routing is page based as mentioned in the preliminary notes. There is no equivalent of React Router's Switch for route based rendering of components.  
   - Apart from /pages, custom routes can be added to the server. This allows Parameterized routing. Parameterised routing is only possible by way of query strings.
@@ -58,8 +58,12 @@ See possible work around - https://github.com/zeit/next.js/issues/544#issuecomme
 
 #### Misc
   - next.config.js has some customized webpack config to load images, environment variables, and node modules that require css files.
-  - Can't pass a variable inside dynamic imports - https://github.com/zeit/next.js/issues/2690
+  - Enable postcss-url inline to support font-awesome. See postcss.config.js 
   - Upgraded react-pdf because there was some known css import issue. In next.js, css files being used by node_modules are troublesome. The upgrade made annotation.css import optional.
+  - Can't pass a variable inside dynamic imports - https://github.com/zeit/next.js/issues/2690
+  - urls formed with query parameters (like doc&_lang=**) in react get route
+  parameter named '_lang'. However, the url for /home in server gets its params from the browser where the param is 'lang' not '_lang'.
+  - defaultLang().lang = 'eng'. This breaks <ExprAbstract/> in the function displayDate(abstract.date[1].value, pageLang) which tries to find alpha2 of 'eng'
 
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen.)
